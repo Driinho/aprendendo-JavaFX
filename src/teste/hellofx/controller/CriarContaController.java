@@ -30,18 +30,24 @@ public class CriarContaController {
         String senha = campoSenha.getText();
         String confirmarSenha = campoConfirmarSenha.getText();
 
-        if (senha.equals(confirmarSenha)) {
-            JOptionPane.showMessageDialog(null, "Conta Criada !", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-            System.out.println("Conta Criada!");
-            App.cadastroDeUsuario(nomeDeUsuario, senha);
-
-            campoUsuario.setText("");
-            campoSenha.setText("");
-            campoConfirmarSenha.setText("");
-
-            App.trocarTela(1);
+        if (nomeDeUsuario.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "nome de Usuario é obrigatório.", "ERRO", JOptionPane.ERROR_MESSAGE);
+        } else if (senha.isEmpty() && senha.length() < 8) {
+            JOptionPane.showMessageDialog(null, "Preencha a senha corretamente.", "ERRO", JOptionPane.ERROR_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Erro, as senhas nao coincidem", "ERRO", JOptionPane.ERROR_MESSAGE);
+            if (senha.equals(confirmarSenha)) {
+                JOptionPane.showMessageDialog(null, "Conta Criada !", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
+                System.out.println("Conta Criada!");
+                App.cadastroDeUsuario(nomeDeUsuario, senha);
+
+                campoUsuario.setText("");
+                campoSenha.setText("");
+                campoConfirmarSenha.setText("");
+
+                App.trocarTela(1);
+            } else {
+                JOptionPane.showMessageDialog(null, "Erro, as senhas nao coincidem", "ERRO", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 }
