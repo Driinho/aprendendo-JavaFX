@@ -9,9 +9,10 @@
       "name": "Launch App",
       "request": "launch",
       "mainClass": "teste.hellofx.App",
-      "projectName": "aprendendo-JavaFX_e45ff929",
-      "vmArgs": "--module-path /Users/pedro.nascimento/Documents/JAVA/javafx-sdk-18.0.1/lib --add-modules javafx.controls,javafx.fxml"
-      //"vmArgs": "--module-path /Users/pedro/OneDrive/Documentos/JAVA/JavaFX/javafx-sdk-18.0.1/lib --add-modules javafx.controls,javafx.fxml"
+      "projectName": "Login_2cc6b475",
+      //"projectName": "aprendendo-JavaFX_e45ff929",
+      //"vmArgs": "--module-path /Users/pedro.nascimento/Documents/JAVA/javafx-sdk-18.0.1/lib --add-modules javafx.controls,javafx.fxml"
+      "vmArgs": "--module-path /Users/pedro/OneDrive/Documentos/JAVA/JavaFX/javafx-sdk-18.0.1/lib --add-modules javafx.controls,javafx.fxml"
     }
   ]
 }

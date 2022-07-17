@@ -1,5 +1,9 @@
 package teste.hellofx.controller;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import javax.swing.JOptionPane;
 
 import javafx.event.ActionEvent;
@@ -8,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import teste.hellofx.App;
+import teste.hellofx.dao.Conexao;
 
 public class CriarContaController {
 
@@ -32,14 +37,30 @@ public class CriarContaController {
 
         if (nomeDeUsuario.isEmpty()) {
             JOptionPane.showMessageDialog(null, "nome de Usuario é obrigatório.", "ERRO", JOptionPane.ERROR_MESSAGE);
-        } else if (senha.isEmpty() && senha.length() < 8) {
+        } else if (senha.isEmpty() || senha.length() < 8) {
             JOptionPane.showMessageDialog(null, "Preencha a senha corretamente.", "ERRO", JOptionPane.ERROR_MESSAGE);
         } else {
             if (senha.equals(confirmarSenha)) {
                 JOptionPane.showMessageDialog(null, "Conta Criada !", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Conta Criada!");
                 App.cadastroDeUsuario(nomeDeUsuario, senha);
-
+                /*
+                 * try {
+                 * Connection conexao = new Conexao().getConnection();
+                 * 
+                 * String sql = "insert into usuario (usuario,senha) values ('" + nomeDeUsuario
+                 * + "','" + senha
+                 * + "');";
+                 * PreparedStatement statement = conexao.prepareStatement(sql);
+                 * statement.execute();
+                 * 
+                 * conexao.close();
+                 * 
+                 * } catch (SQLException e) {
+                 * // TODO Auto-generated catch block
+                 * e.printStackTrace();
+                 * }
+                 */
                 campoUsuario.setText("");
                 campoSenha.setText("");
                 campoConfirmarSenha.setText("");
