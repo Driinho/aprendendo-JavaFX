@@ -1,5 +1,6 @@
 package teste.hellofx.controller;
 
+import java.lang.System.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -12,7 +13,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import teste.hellofx.App;
+import teste.hellofx.classes.Pessoa;
 import teste.hellofx.dao.Conexao;
+import teste.hellofx.dao.PessoaDAO;
 
 public class CriarContaController {
 
@@ -43,24 +46,18 @@ public class CriarContaController {
             if (senha.equals(confirmarSenha)) {
                 JOptionPane.showMessageDialog(null, "Conta Criada !", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Conta Criada!");
-                App.cadastroDeUsuario(nomeDeUsuario, senha);
-                /*
-                 * try {
-                 * Connection conexao = new Conexao().getConnection();
-                 * 
-                 * String sql = "insert into usuario (usuario,senha) values ('" + nomeDeUsuario
-                 * + "','" + senha
-                 * + "');";
-                 * PreparedStatement statement = conexao.prepareStatement(sql);
-                 * statement.execute();
-                 * 
-                 * conexao.close();
-                 * 
-                 * } catch (SQLException e) {
-                 * // TODO Auto-generated catch block
-                 * e.printStackTrace();
-                 * }
-                 */
+                Pessoa pessoa = new Pessoa(nomeDeUsuario, senha);
+
+                try {
+                    Connection conexao = new Conexao().getConnection();
+                    PessoaDAO pessoaDao = new PessoaDAO(conexao);
+                    pessoaDao.insert(pessoa);
+
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
                 campoUsuario.setText("");
                 campoSenha.setText("");
                 campoConfirmarSenha.setText("");

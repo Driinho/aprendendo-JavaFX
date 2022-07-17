@@ -53,10 +53,6 @@ public class App extends Application {
         }
     }
 
-    public static void cadastroDeUsuario(String nomeDeUsuario, String senha) {
-        sistema.cadastroDeUsuario(nomeDeUsuario, senha);
-    }
-
     public static ArrayList<Pessoa> listarUsuarios() {
         ArrayList<Pessoa> usuarios = sistema.listarUsuarios();
         return usuarios;

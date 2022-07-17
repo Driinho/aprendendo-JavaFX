@@ -1,5 +1,7 @@
 package teste.hellofx.controller;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -11,6 +13,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import teste.hellofx.App;
 import teste.hellofx.classes.Pessoa;
+import teste.hellofx.dao.Conexao;
+import teste.hellofx.dao.PessoaDAO;
 
 public class LoginController {
 
@@ -27,26 +31,19 @@ public class LoginController {
     private TextField campoUsuario;
 
     @FXML
-    void fazerLogin(ActionEvent event) {
+    void fazerLogin(ActionEvent event) throws SQLException {
         String usuarioAtual = campoUsuario.getText();
         String senhaAtual = campoSenha.getText();
 
-        ArrayList<Pessoa> usuarios = App.listarUsuarios();
+        Pessoa autenticar = new Pessoa(usuarioAtual, senhaAtual);
+        Connection conexao = new Conexao().getConnection();
+        PessoaDAO pessoaDao = new PessoaDAO(conexao);
 
-        if (usuarios.size() == 0) {
-            JOptionPane.showMessageDialog(null, "Ainda não existe um Usuario cadastrado", "ERRO",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-
-        for (int i = 0; i < usuarios.size(); i++) {
-            if (usuarioAtual.equals(usuarios.get(i).getNomeDeUsuario())
-                    && senhaAtual.equals(usuarios.get(i).getSenha())) {
-                System.out.println("Login Efetuado !!");
-                JOptionPane.showMessageDialog(null, "Login Efetuado !", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                System.out.println("Usuario ou senha incorreto !!");
-                JOptionPane.showMessageDialog(null, "Usuario ou senha incorreto !", "ERRO", JOptionPane.ERROR_MESSAGE);
-            }
+        if (pessoaDao.existeNoBancoPorUsuarioESenha(autenticar)) {
+            JOptionPane.showMessageDialog(null, "Login Efetuado com Sucesso !!!", "SUCESSO",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuario ou senha invalidos !!", "ERRO", JOptionPane.ERROR_MESSAGE);
         }
 
         campoUsuario.setText("");

@@ -28,11 +28,6 @@ public class Sistema {
         this.nome = nome;
     }
 
-    public void cadastroDeUsuario(String nomeDeUsuario, String senha) {
-        Pessoa pessoa = new Pessoa(nomeDeUsuario, senha);
-        this.listaDeUsuarios.add(pessoa);
-    }
-
     public ArrayList<Pessoa> listarUsuarios() {
         return listaDeUsuarios;
     }
