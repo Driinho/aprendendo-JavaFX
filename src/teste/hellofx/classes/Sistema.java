@@ -1,23 +1,11 @@
 package teste.hellofx.classes;
 
-import java.util.ArrayList;
-
 public class Sistema {
 
     private String nome;
-    private ArrayList<Pessoa> listaDeUsuarios;
 
     public Sistema(String nome) {
         this.nome = nome;
-        listaDeUsuarios = new ArrayList<Pessoa>();
-    }
-
-    public ArrayList<Pessoa> getListaDeUsuarios() {
-        return listaDeUsuarios;
-    }
-
-    public void setListaDeUsuarios(ArrayList<Pessoa> listaDeUsuarios) {
-        this.listaDeUsuarios = listaDeUsuarios;
     }
 
     public String getNome() {
@@ -27,9 +15,4 @@ public class Sistema {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public ArrayList<Pessoa> listarUsuarios() {
-        return listaDeUsuarios;
-    }
-
 }

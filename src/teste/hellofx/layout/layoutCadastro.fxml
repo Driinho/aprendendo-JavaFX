@@ -49,11 +49,6 @@
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <Label layoutX="245.0" layoutY="106.0" text="Usuario">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
             <Label layoutX="245.0" layoutY="163.0" text="Senha" />
             <Label layoutX="245.0" layoutY="212.0" text="Confirmar senha" />
             <TextField fx:id="campoUsuario" layoutX="246.0" layoutY="126.0" />
@@ -64,6 +59,14 @@
                   <Font size="18.0" />
                </font>
             </Button>
+            <Label layoutX="246.0" layoutY="106.0" text="Usuário">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="errorMessage1" layoutX="402.0" layoutY="130.0" text="*Campo Obrigatório" textFill="RED" visible="false" />
+            <Label fx:id="errorMessage2" layoutX="402.0" layoutY="183.0" text="*Campo Obrigatório" textFill="RED" visible="false" />
+            <Label fx:id="errorMessage3" layoutX="402.0" layoutY="233.0" text="*Campo Obrigatório" textFill="RED" visible="false" />
          </children>
     </AnchorPane>
   </children>

@@ -1,8 +1,6 @@
 package teste.hellofx.controller;
 
-import java.lang.System.Logger;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
@@ -10,6 +8,7 @@ import javax.swing.JOptionPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import teste.hellofx.App;
@@ -32,6 +31,15 @@ public class CriarContaController {
     private TextField campoUsuario;
 
     @FXML
+    private Label errorMessage1;
+
+    @FXML
+    private Label errorMessage2;
+
+    @FXML
+    private Label errorMessage3;
+
+    @FXML
     void criarConta(ActionEvent event) {
 
         String nomeDeUsuario = campoUsuario.getText();
@@ -39,10 +47,30 @@ public class CriarContaController {
         String confirmarSenha = campoConfirmarSenha.getText();
 
         if (nomeDeUsuario.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "nome de Usuario é obrigatório.", "ERRO", JOptionPane.ERROR_MESSAGE);
-        } else if (senha.isEmpty() || senha.length() < 8) {
-            JOptionPane.showMessageDialog(null, "Preencha a senha corretamente.", "ERRO", JOptionPane.ERROR_MESSAGE);
+            errorMessage1.setVisible(true);
+            campoUsuario.setStyle("-fx-border-color: red");
         } else {
+            errorMessage1.setVisible(false);
+            campoUsuario.setStyle("-fx-border-color: default");
+        }
+
+        if (senha.isEmpty()) {
+            errorMessage2.setVisible(true);
+            campoSenha.setStyle("-fx-border-color: red");
+        } else {
+            errorMessage2.setVisible(false);
+            campoSenha.setStyle("-fx-border-color: default");
+        }
+
+        if (confirmarSenha.isEmpty()) {
+            errorMessage3.setVisible(true);
+            campoConfirmarSenha.setStyle("-fx-border-color: red");
+        } else {
+            errorMessage3.setVisible(false);
+            campoConfirmarSenha.setStyle("-fx-border-color: default");
+        }
+
+        if (!nomeDeUsuario.isEmpty() && !senha.isEmpty() && !confirmarSenha.isEmpty()) {
             if (senha.equals(confirmarSenha)) {
                 JOptionPane.showMessageDialog(null, "Conta Criada !", "SUCESSO", JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("Conta Criada!");

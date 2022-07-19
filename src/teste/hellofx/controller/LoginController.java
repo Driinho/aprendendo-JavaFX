@@ -2,7 +2,6 @@ package teste.hellofx.controller;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -34,14 +33,12 @@ public class LoginController {
     void fazerLogin(ActionEvent event) throws SQLException {
         String usuarioAtual = campoUsuario.getText();
         String senhaAtual = campoSenha.getText();
-
         Pessoa autenticar = new Pessoa(usuarioAtual, senhaAtual);
         Connection conexao = new Conexao().getConnection();
         PessoaDAO pessoaDao = new PessoaDAO(conexao);
 
         if (pessoaDao.existeNoBancoPorUsuarioESenha(autenticar)) {
-            JOptionPane.showMessageDialog(null, "Login Efetuado com Sucesso !!!", "SUCESSO",
-                    JOptionPane.INFORMATION_MESSAGE);
+            App.trocarTela(3);
         } else {
             JOptionPane.showMessageDialog(null, "Usuario ou senha invalidos !!", "ERRO", JOptionPane.ERROR_MESSAGE);
         }
